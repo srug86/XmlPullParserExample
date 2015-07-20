@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template name="customer">
+    <category name="Profile" type="PROFILE">
+        <field name="Name" type="STRING"/>
+        <field name="Surname" type="STRING"/>
+        <field name="DNI" type="DNI"/>
+    </category>
+    <category name="Email" type="EMAIL">
+        <field name="Personal" type="EMAIL"/>
+        <field name="Corporate" type="EMAIL"/>
+    </category>
+    <category name="Address" type="ADDRESS">
+        <field name="Street" type="STRING"/>
+        <field name="City" type="STRING"/>
+        <field name="State" type="STRING"/>
+        <field name="ZipCode" type="NATURAL"/>
+    </category>
+    <category name="Phone" type="PHONE">
+        <field name="Mobile" type="PHONE"/>
+        <field name="Home" type="PHONE"/>
+    </category>
+</template>
