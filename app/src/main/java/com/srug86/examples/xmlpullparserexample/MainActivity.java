@@ -35,13 +35,11 @@ public class MainActivity extends ActionBarActivity {
         Template template = loadTemplate();
         if (template == null) { return; }
 
-        tvTemplateName.setText(template.getName());
-        mAdapter = new CategoryAdapter(template.getCategoryList());
+        tvTemplateName.setText("Template: " + template.getName());
+        mAdapter = new CategoryAdapter(this, template.getCategoryList());
         rvTemplateContent.setAdapter(mAdapter);
         mLayoutManager = new LinearLayoutManager(this);
         rvTemplateContent.setLayoutManager(mLayoutManager);
-
-        //rvTemplateContent.setHasFixedSize(true);
     }
 
     private Template loadTemplate() {

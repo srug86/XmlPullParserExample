@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/field_layout_standard_height"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvStringFieldName"
+        android:id="@+id/tvFieldName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="String"
+        android:text="Date"
         android:textColor="#ff757575" />
 
     <EditText
-        android:id="@+id/etStringFieldValue"
+        android:id="@+id/etFieldValue"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:inputType="text" />
+        android:textSize="22sp" />
 
 </LinearLayout>
