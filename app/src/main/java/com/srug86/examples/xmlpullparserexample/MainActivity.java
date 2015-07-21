@@ -1,41 +1,62 @@
 package com.srug86.examples.xmlpullparserexample;
 
-import android.content.res.XmlResourceParser;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.srug86.examples.xmlpullparserexample.adapter.CategoryAdapter;
 import com.srug86.examples.xmlpullparserexample.domain.Template;
 import com.srug86.examples.xmlpullparserexample.handler.XmlPullParserHandler;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
-
-import static com.srug86.examples.xmlpullparserexample.R.xml.customer;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private TextView tvTemplateName;
+    private RecyclerView rvTemplateContent;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Template template;
+        tvTemplateName = (TextView) findViewById(R.id.tvTemplateName);
+        rvTemplateContent = (RecyclerView) findViewById(R.id.rvTemplateContent);
+
+        Template template = loadTemplate();
+        if (template == null) { return; }
+
+        tvTemplateName.setText(template.getName());
+        mAdapter = new CategoryAdapter(template.getCategoryList());
+        rvTemplateContent.setAdapter(mAdapter);
+        mLayoutManager = new LinearLayoutManager(this);
+        rvTemplateContent.setLayoutManager(mLayoutManager);
+
+        //rvTemplateContent.setHasFixedSize(true);
+    }
+
+    private Template loadTemplate() {
+        Template template = null;
+
         try {
             XmlPullParserHandler parser = new XmlPullParserHandler();
-            File toPath = Environment.getExternalStorageDirectory();
-            //File toPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
-            //File toPath = Environment.getDataDirectory();
             File xmlFile = new File("/storage/emulated/0/Documents/customer.xml");
             FileInputStream fis = new FileInputStream(xmlFile);
             template = parser.parse(fis);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        return template;
     }
 
     @Override

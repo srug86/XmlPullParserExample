@@ -7,7 +7,7 @@ public class Field {
 
     private String name;
     private FieldType type;
-    private String value;
+    private String value = "";
 
     public Field() { }
 
